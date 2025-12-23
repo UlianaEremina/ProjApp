@@ -1,0 +1,8 @@
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\bin\Debug\net9.0\.msCoverageSourceRootsMapping_Tests
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\bin\Debug\net9.0\CoverletSourceRootsMapping_Tests
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\obj\Debug\net9.0\Tests.csproj.AssemblyReference.cache
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\obj\Debug\net9.0\Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\obj\Debug\net9.0\Tests.AssemblyInfoInputs.cache
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\obj\Debug\net9.0\Tests.AssemblyInfo.cs
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\obj\Debug\net9.0\Tests.csproj.CoreCompileInputs.cache
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\Program.Tests\obj\Debug\net9.0\Tests.sourcelink.json

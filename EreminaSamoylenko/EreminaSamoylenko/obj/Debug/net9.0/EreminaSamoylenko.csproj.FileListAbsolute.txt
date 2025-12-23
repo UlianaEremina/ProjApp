@@ -1,0 +1,45 @@
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.exe
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.deps.json
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.runtimeconfig.json
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.pdb
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.AssemblyInfoInputs.cache
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.AssemblyInfo.cs
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.csproj.CoreCompileInputs.cache
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\refint\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.pdb
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.genruntimeconfig.cache
+C:\Users\games\OneDrive\Рабочий стол\EreminaSamoylenko\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\ref\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.exe
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.deps.json
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.runtimeconfig.json
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.pdb
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.AssemblyInfoInputs.cache
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.AssemblyInfo.cs
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.csproj.CoreCompileInputs.cache
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.sourcelink.json
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\refint\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.pdb
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.genruntimeconfig.cache
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\ref\EreminaSamoylenko.dll
+C:\Users\games\OneDrive\Рабочий стол\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.csproj.AssemblyReference.cache
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.exe
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.deps.json
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.runtimeconfig.json
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.dll
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\bin\Debug\net9.0\EreminaSamoylenko.pdb
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.GeneratedMSBuildEditorConfig.editorconfig
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.AssemblyInfoInputs.cache
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.AssemblyInfo.cs
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.csproj.CoreCompileInputs.cache
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.sourcelink.json
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.dll
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\refint\EreminaSamoylenko.dll
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.pdb
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\EreminaSamoylenko.genruntimeconfig.cache
+C:\App\ProjectVuz\EreminaSamoylenko\EreminaSamoylenko\obj\Debug\net9.0\ref\EreminaSamoylenko.dll
