@@ -1,0 +1,53 @@
+name: .NET CI - EreminaSamoylenko
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore EreminaSamoylenko/EreminaSamoylenko.sln
+
+      - name: Build
+        run: dotnet build EreminaSamoylenko/EreminaSamoylenko.sln --configuration Release --no-restore
+
+      - name: Run tests with coverage
+        run: |
+          dotnet test EreminaSamoylenko/EreminaSamoylenko.Tests/EreminaSamoylenko.Tests.csproj `
+            --configuration Release `
+            --no-build `
+            --collect:"XPlat Code Coverage" `
+            --results-directory ./TestResults
+
+      - name: Install ReportGenerator
+        run: dotnet tool install --global dotnet-reportgenerator-globaltool
+
+      - name: Generate coverage report
+        run: |
+          reportgenerator `
+            -reports:"./TestResults/**/coverage.cobertura.xml" `
+            -targetdir:"./CoverageReport" `
+            -reporttypes:"Html;TextSummary"
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report-html
+          path: CoverageReport/
+
+      - name: Show coverage summary
+        run: type CoverageReport\Summary.txt
