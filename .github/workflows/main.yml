@@ -27,7 +27,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          dotnet test EreminaSamoylenko/Program.Tests/Program.Tests.csproj `
+          dotnet test EreminaSamoylenko/EreminaSamoylenko.Tests/EreminaSamoylenko.Tests.csproj `
             --configuration Release `
             --no-build `
             --collect:"XPlat Code Coverage" `
