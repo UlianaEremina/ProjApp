@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nheVS9olhKU=",
+  "dgSpecHash": "Fod2XuKuT+0=",
   "success": true,
-  "projectFilePath": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj",
+  "projectFilePath": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\games\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",
     "C:\\Users\\games\\.nuget\\packages\\microsoft.codecoverage\\17.12.0\\microsoft.codecoverage.17.12.0.nupkg.sha512",

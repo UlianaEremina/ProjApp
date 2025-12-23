@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("EreminaSamoylenko.Tests")]
 
 namespace EreminaSamoylenkoApp;
+
 
 public abstract class Program
 {
     // Структура для хранения критериев культуры (посадка)
-    struct CropCriteria
+    public struct CropCriteria
     {
         public string Name;
         public int MinDayTemp;
@@ -20,7 +24,7 @@ public abstract class Program
     }
 
     // Структура для хранения критериев культуры (сбор)
-    struct HarvestCriteria
+    public struct HarvestCriteria
     {
         public string Name;
         public int MinDayTemp;
@@ -34,7 +38,7 @@ public abstract class Program
     }
 
     // База данных культур для посадки с экспертными оценками
-    static Dictionary<string, CropCriteria> cropsDatabase = new Dictionary<string, CropCriteria>
+    public static Dictionary<string, CropCriteria> cropsDatabase = new Dictionary<string, CropCriteria>
     {
         {
             "пшеница",
@@ -99,7 +103,7 @@ public abstract class Program
     };
 
     // База данных культур для сбора урожая с экспертными оценками
-    static Dictionary<string, HarvestCriteria> harvestDatabase = new Dictionary<string, HarvestCriteria>
+    public static Dictionary<string, HarvestCriteria> harvestDatabase = new Dictionary<string, HarvestCriteria>
     {
         {
             "пшеница",

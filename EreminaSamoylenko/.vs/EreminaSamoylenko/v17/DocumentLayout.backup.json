@@ -1,14 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\",
+  "WorkspaceRootPath": "C:\\App\\ProjApp\\EreminaSamoylenko\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7CA0E70A-F42C-476E-A82A-FC1507AB22D5}|EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj|c:\\app\\projectvuz\\ereminasamoylenko\\ereminasamoylenko.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CA0E70A-F42C-476E-A82A-FC1507AB22D5}|EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj|solutionrelative:ereminasamoylenko.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7CA0E70A-F42C-476E-A82A-FC1507AB22D5}|EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj|c:\\app\\projapp\\ereminasamoylenko\\ereminasamoylenko.tests\\unittest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA0E70A-F42C-476E-A82A-FC1507AB22D5}|EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj|solutionrelative:ereminasamoylenko.tests\\unittest2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6CF08F72-7A4C-4EA4-B929-751A7AA389D4}|EreminaSamoylenko\\EreminaSamoylenko.csproj|c:\\app\\projectvuz\\ereminasamoylenko\\ereminasamoylenko\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{6CF08F72-7A4C-4EA4-B929-751A7AA389D4}|EreminaSamoylenko\\EreminaSamoylenko.csproj|c:\\app\\projapp\\ereminasamoylenko\\ereminasamoylenko\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6CF08F72-7A4C-4EA4-B929-751A7AA389D4}|EreminaSamoylenko\\EreminaSamoylenko.csproj|solutionrelative:ereminasamoylenko\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CA0E70A-F42C-476E-A82A-FC1507AB22D5}|EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj|c:\\app\\projapp\\ereminasamoylenko\\ereminasamoylenko.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CA0E70A-F42C-476E-A82A-FC1507AB22D5}|EreminaSamoylenko.Tests\\EreminaSamoylenko.Tests.csproj|solutionrelative:ereminasamoylenko.tests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest2.cs",
+              "DocumentMoniker": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\UnitTest2.cs",
+              "RelativeDocumentMoniker": "EreminaSamoylenko.Tests\\UnitTest2.cs",
+              "ToolTip": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\UnitTest2.cs*",
+              "RelativeToolTip": "EreminaSamoylenko.Tests\\UnitTest2.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-23T21:12:05.323Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -30,13 +47,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "UnitTest1.cs",
-              "DocumentMoniker": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\UnitTest1.cs",
+              "DocumentMoniker": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\UnitTest1.cs",
               "RelativeDocumentMoniker": "EreminaSamoylenko.Tests\\UnitTest1.cs",
-              "ToolTip": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\UnitTest1.cs*",
-              "RelativeToolTip": "EreminaSamoylenko.Tests\\UnitTest1.cs*",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwCsAAAAtAAAAAAAAAA==",
+              "ToolTip": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko.Tests\\UnitTest1.cs",
+              "RelativeToolTip": "EreminaSamoylenko.Tests\\UnitTest1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-23T20:58:08.406Z",
               "EditorCaption": ""
@@ -45,11 +62,11 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko\\Program.cs",
+              "DocumentMoniker": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko\\Program.cs",
               "RelativeDocumentMoniker": "EreminaSamoylenko\\Program.cs",
-              "ToolTip": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko\\Program.cs",
-              "RelativeToolTip": "EreminaSamoylenko\\Program.cs",
-              "ViewState": "AgIAADcCAAAAAAAAAAAcwFwCAAABAAAAAAAAAA==",
+              "ToolTip": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko\\Program.cs*",
+              "RelativeToolTip": "EreminaSamoylenko\\Program.cs*",
+              "ViewState": "AgIAAOEAAAAAAAAAAAAqwPoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-23T17:44:26.527Z",
               "EditorCaption": ""

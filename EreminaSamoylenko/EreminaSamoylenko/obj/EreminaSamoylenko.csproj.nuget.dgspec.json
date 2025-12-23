@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj": {}
+    "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj": {}
   },
   "projects": {
-    "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj": {
+    "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj",
+        "projectUniqueName": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj",
         "projectName": "EreminaSamoylenko",
-        "projectPath": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj",
+        "projectPath": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko\\EreminaSamoylenko.csproj",
         "packagesPath": "C:\\Users\\games\\.nuget\\packages\\",
-        "outputPath": "C:\\App\\ProjectVuz\\EreminaSamoylenko\\EreminaSamoylenko\\obj\\",
+        "outputPath": "C:\\App\\ProjApp\\EreminaSamoylenko\\EreminaSamoylenko\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
