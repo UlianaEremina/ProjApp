@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EreminaSamoylenko.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf86d2f17c9d00d577c8dcc51dcd7a32ad3dd607")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c6465e37ab6e404553863500cd79aa45538d2f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("EreminaSamoylenko.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EreminaSamoylenko.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
