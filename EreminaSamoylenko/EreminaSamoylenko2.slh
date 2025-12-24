@@ -1,0 +1,673 @@
+using System;
+using System.Collections.Generic;
+
+namespace Program;
+
+// 1. Паттерн СТРАТЕГИЯ (Strategy) - разные алгоритмы расчета для посадки и сбора
+interface IProbabilityCalculator
+{
+    double CalculateProbability(CropData crop, WeatherData weather);
+    string GetRecommendation(double probability);
+}
+
+// 2. Паттерн ФАБРИКА (Factory) - создание калькуляторов
+static class CalculatorFactory
+{
+    public static IProbabilityCalculator CreateCalculator(string operationType)
+    {
+        return operationType switch
+        {
+            "ПОСАДКИ" => new PlantingCalculator(),
+            "СБОРА УРОЖАЯ" => new HarvestCalculator(),
+            _ => throw new ArgumentException("Неизвестный тип операции")
+        };
+    }
+}
+
+// 3. Паттерн КОМАНДА (Command) - для пунктов меню
+interface IMenuCommand
+{
+    void Execute();
+}
+
+// 4. Общие структуры данных
+class CropData
+{
+    public string Name { get; set; }
+    public int MinDayTemp { get; set; }
+    public int MaxDayTemp { get; set; }
+    public int MinNightTemp { get; set; }
+    public double DayTempWeight { get; set; }
+    public double NightTempWeight { get; set; }
+    public double HumidityWeight { get; set; }
+    public double WeatherWeight { get; set; }
+    public string OptimalMonths { get; set; }
+}
+
+class WeatherData
+{
+    public double DayTemperature { get; set; }
+    public double NightTemperature { get; set; }
+    public double Humidity { get; set; }
+    public string WeatherType { get; set; }
+}
+
+// 5. Реализации калькуляторов
+class PlantingCalculator : IProbabilityCalculator
+{
+    public double CalculateProbability(CropData crop, WeatherData weather)
+    {
+        double dayTempScore = CalculateTemperatureScore(weather.DayTemperature, crop.MinDayTemp, crop.MaxDayTemp) * crop.DayTempWeight;
+        double nightTempScore = (weather.NightTemperature >= crop.MinNightTemp ? 1.0 : 0.5) * crop.NightTempWeight;
+        double humidityScore = (weather.Humidity >= 60 && weather.Humidity <= 80 ? 1.0 : 0.5) * crop.HumidityWeight;
+        double weatherScore = CalculateWeatherScore(weather.WeatherType) * crop.WeatherWeight;
+
+        return (dayTempScore + nightTempScore + humidityScore + weatherScore) / 4.0;
+    }
+
+    public string GetRecommendation(double probability)
+    {
+        return probability switch
+        {
+            < 0.4 => "Лучше воздержаться от посадки.",
+            < 0.7 => "Стоит еще подождать, погода благоприятна лишь для посадки некоторых культур.",
+            _ => "Большой процент успешной заготовки и дальнейшей высадки растений."
+        };
+    }
+
+    private double CalculateTemperatureScore(double temp, int minTemp, int maxTemp)
+    {
+        if (temp >= minTemp && temp <= maxTemp) return 1.0;
+        if (temp < minTemp - 5) return 0.1;
+        if (temp < minTemp) return 0.5;
+        if (temp > maxTemp + 5) return 0.5;
+        if (temp > maxTemp) return 0.7;
+        return 0.3;
+    }
+
+    private double CalculateWeatherScore(string weatherType)
+    {
+        return weatherType switch
+        {
+            "1" => 1.0,  // Солнечно
+            "2" => 0.7,  // Облачно
+            "3" => 0.5,  // Дождь
+            "4" => 0.1,  // Снег
+            _ => 0.5
+        };
+    }
+}
+
+class HarvestCalculator : IProbabilityCalculator
+{
+    public double CalculateProbability(CropData crop, WeatherData weather)
+    {
+        double dayTempScore = CalculateTemperatureScore(weather.DayTemperature, crop.MinDayTemp, crop.MaxDayTemp) * crop.DayTempWeight;
+        double nightTempScore = (weather.NightTemperature >= crop.MinNightTemp ? 1.0 : 0.5) * crop.NightTempWeight;
+        double humidityScore = CalculateHarvestHumidityScore(weather.Humidity, crop.Name) * crop.HumidityWeight;
+        double weatherScore = CalculateWeatherScore(weather.WeatherType) * crop.WeatherWeight;
+
+        return (dayTempScore + nightTempScore + humidityScore + weatherScore) / 4.0;
+    }
+
+    public string GetRecommendation(double probability)
+    {
+        return probability switch
+        {
+            < 0.4 => "Уборка не рекомендуется.",
+            < 0.7 => "Стоит подождать или убирать с осторожностью.",
+            _ => "Условия благоприятны для уборки урожая."
+        };
+    }
+
+    private double CalculateTemperatureScore(double temp, int minTemp, int maxTemp)
+    {
+        if (temp >= minTemp && temp <= maxTemp) return 1.0;
+        if (temp < minTemp - 5) return 0.1;
+        if (temp < minTemp) return 0.5;
+        if (temp > maxTemp + 5) return 0.5;
+        if (temp > maxTemp) return 0.7;
+        return 0.3;
+    }
+
+    private double CalculateWeatherScore(string weatherType)
+    {
+        return weatherType switch
+        {
+            "1" => 1.0,  // Солнечно
+            "2" => 0.7,  // Облачно
+            "3" => 0.2,  // Дождь
+            "4" => 0.0,  // Снег
+            _ => 0.5
+        };
+    }
+
+    private double CalculateHarvestHumidityScore(double humidity, string crop)
+    {
+        return crop.ToLower() switch
+        {
+            "пшеница" => humidity < 60 ? 1.0 : 0.5,
+            "кукуруза" => (humidity >= 50 && humidity <= 70) ? 1.0 : 0.5,
+            "картофель" => (humidity >= 60 && humidity <= 70) ? 1.0 : 0.5,
+            "клубника" => (humidity >= 60 && humidity <= 70) ? 1.0 : 0.5,
+            _ => (humidity >= 60 && humidity <= 80) ? 1.0 : 0.5
+        };
+    }
+}
+
+// 6. Команды для меню
+class CalculatePlantingCommand : IMenuCommand
+{
+    public void Execute()
+    {
+        CalculateProbabilityCommand.Execute("ПОСАДКИ", Program.cropsDatabase);
+    }
+}
+
+class CalculateHarvestCommand : IMenuCommand
+{
+    public void Execute()
+    {
+        CalculateProbabilityCommand.Execute("СБОРА УРОЖАЯ", Program.harvestDatabase);
+    }
+}
+
+class ShowFactsCommand : IMenuCommand
+{
+    public void Execute()
+    {
+        Program.ShowInterestingFacts();
+    }
+}
+
+class ShowCropsCommand : IMenuCommand
+{
+    public void Execute()
+    {
+        Program.ShowPlantingCrops();
+    }
+}
+
+class ShowNotesCommand : IMenuCommand
+{
+    public void Execute()
+    {
+        Program.ShowTestCalculations();
+    }
+}
+
+class ExitCommand : IMenuCommand
+{
+    public void Execute()
+    {
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("Спасибо за использование программы!");
+        Console.WriteLine("Завершение работы программы.");
+        Console.WriteLine("--------------------------------------------------------------------");
+        Environment.Exit(0);
+    }
+}
+
+// 7. Статический класс для общей логики расчета
+static class CalculateProbabilityCommand
+{
+    private static double humidity;
+    private static double nightTemp;
+    private static double dayTemp;
+
+    public static void Execute(string operationType, Dictionary<string, CropData> database)
+    {
+        Console.Clear();
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine($"РАСЧЕТ ВЕРОЯТНОСТИ {operationType} С ЭКСПЕРТНОЙ ОЦЕНКОЙ");
+        Console.WriteLine("--------------------------------------------------------------------");
+
+        // Выбор культуры
+        Console.WriteLine("\nВыберите культуру для анализа:");
+        int i = 1;
+        foreach (var crop in database)
+        {
+            Console.WriteLine($"{i}. {crop.Value.Name}");
+            i++;
+        }
+        Console.Write("Введите номер культуры: ");
+
+        if (!int.TryParse(Console.ReadLine(), out int cropIndex) || cropIndex < 1 || cropIndex > database.Count)
+        {
+            Console.WriteLine("Некорректный выбор культуры!");
+            Console.ReadKey();
+            return;
+        }
+
+        string selectedCrop = "";
+        int current = 1;
+        foreach (var crop in database)
+        {
+            if (current == cropIndex)
+            {
+                selectedCrop = crop.Key;
+                break;
+            }
+            current++;
+        }
+
+        var cropData = database[selectedCrop];
+
+        // Ввод данных о погодных условиях
+        var weatherData = GetWeatherData();
+
+        // Используем фабрику для создания калькулятора
+        var calculator = CalculatorFactory.CreateCalculator(operationType);
+        var probability = calculator.CalculateProbability(cropData, weatherData);
+        var recommendation = calculator.GetRecommendation(probability);
+
+        // Вывод результатов
+        DisplayResults(operationType, cropData, weatherData, probability, recommendation);
+    }
+
+    private static WeatherData GetWeatherData()
+    {
+        var weather = new WeatherData();
+
+        Console.WriteLine("\nВведите данные о погодных условиях:");
+
+        Console.Write("Температура днем (°C): ");
+        while (!double.TryParse(Console.ReadLine(), out double dayTemp))
+        {
+            Console.Write("Некорректный ввод. Температура днем (°C): ");
+        }
+        weather.DayTemperature = dayTemp;
+
+        Console.Write("Температура ночью (°C): ");
+        while (!double.TryParse(Console.ReadLine(), out double nightTemp))
+        {
+            Console.Write("Некорректный ввод. Температура ночью (°C): ");
+        }
+        weather.NightTemperature = nightTemp;
+
+        Console.Write("Влажность почвы (%): ");
+        while (!double.TryParse(Console.ReadLine(), out double humidity))
+        {
+            Console.Write("Некорректный ввод. Влажность почвы (%): ");
+        }
+        weather.Humidity = humidity;
+
+        Console.WriteLine("Погодные условия:");
+        Console.WriteLine("1. Солнечно");
+        Console.WriteLine("2. Облачно");
+        Console.WriteLine("3. Дождь");
+        Console.WriteLine("4. Снег");
+        Console.Write("Выберите тип погоды (1-4): ");
+        weather.WeatherType = Console.ReadLine();
+
+        while (weather.WeatherType != "1" && weather.WeatherType != "2" &&
+               weather.WeatherType != "3" && weather.WeatherType != "4")
+        {
+            Console.Write("Некорректный ввод. Выберите тип погоды (1-4): ");
+            weather.WeatherType = Console.ReadLine();
+        }
+
+        return weather;
+    }
+
+    private static void DisplayResults(string operationType, CropData crop, WeatherData weather,
+        double probability, string recommendation)
+    {
+        Console.WriteLine($"\nАнализ для: {crop.Name}");
+        Console.WriteLine($"Оптимальные месяцы: {crop.OptimalMonths}");
+        Console.WriteLine($"Оптимальная температура днем: {crop.MinDayTemp}°C - {crop.MaxDayTemp}°C");
+        Console.WriteLine($"Минимальная температура ночью: {crop.MinNightTemp}°C");
+
+        Console.WriteLine("\n--------------------------------------------------------------------");
+        Console.WriteLine("РЕЗУЛЬТАТЫ РАСЧЕТА:");
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine($"Температура днем: {weather.DayTemperature}°C");
+        Console.WriteLine($"Температура ночью: {weather.NightTemperature}°C");
+        Console.WriteLine($"Влажность почвы: {weather.Humidity}%");
+
+        string weatherText = weather.WeatherType switch
+        {
+            "1" => "Солнечно",
+            "2" => "Облачно",
+            "3" => "Дождь",
+            "4" => "Снег",
+            _ => "Неизвестно"
+        };
+        Console.WriteLine($"Погодные условия: {weatherText}");
+
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine($"ВЕРОЯТНОСТЬ УДАЧНОЙ {operationType}: {probability:P2}");
+        Console.WriteLine($"РЕКОМЕНДАЦИЯ: {recommendation}");
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("\nНажмите любую клавишу для возврата в меню...");
+        Console.ReadKey();
+    }
+}
+
+// Основной класс программы
+internal abstract class Program
+{
+    // База данных культур для посадки
+    public static Dictionary<string, CropData> cropsDatabase = new Dictionary<string, CropData>
+    {
+        {
+            "пшеница",
+            new CropData
+            {
+                Name = "Пшеница (яровая)",
+                MinDayTemp = 10,
+                MaxDayTemp = 25,
+                MinNightTemp = 0,
+                DayTempWeight = 1.0,
+                NightTempWeight = 0.8,
+                HumidityWeight = 1.0,
+                WeatherWeight = 0.7,
+                OptimalMonths = "апрель — май"
+            }
+        },
+        {
+            "кукуруза",
+            new CropData
+            {
+                Name = "Кукуруза",
+                MinDayTemp = 18,
+                MaxDayTemp = 30,
+                MinNightTemp = 8,
+                DayTempWeight = 1.0,
+                NightTempWeight = 1.0,
+                HumidityWeight = 1.0,
+                WeatherWeight = 1.0,
+                OptimalMonths = "май — июнь"
+            }
+        },
+        {
+            "картофель",
+            new CropData
+            {
+                Name = "Картофель",
+                MinDayTemp = 15,
+                MaxDayTemp = 22,
+                MinNightTemp = 5,
+                DayTempWeight = 1.0,
+                NightTempWeight = 0.8,
+                HumidityWeight = 1.0,
+                WeatherWeight = 0.9,
+                OptimalMonths = "апрель — май"
+            }
+        },
+        {
+            "клубника",
+            new CropData
+            {
+                Name = "Клубника (весенняя посадка)",
+                MinDayTemp = 15,
+                MaxDayTemp = 20,
+                MinNightTemp = 5,
+                DayTempWeight = 1.0,
+                NightTempWeight = 1.0,
+                HumidityWeight = 1.0,
+                WeatherWeight = 1.0,
+                OptimalMonths = "апрель — май"
+            }
+        }
+    };
+
+    // База данных культур для сбора урожая
+    public static Dictionary<string, CropData> harvestDatabase = new Dictionary<string, CropData>
+    {
+        {
+            "пшеница",
+            new CropData
+            {
+                Name = "Пшеница (яровая)",
+                MinDayTemp = 18,
+                MaxDayTemp = 25,
+                MinNightTemp = 5,
+                DayTempWeight = 1.0,
+                NightTempWeight = 0.9,
+                HumidityWeight = 1.0,
+                WeatherWeight = 1.0,
+                OptimalMonths = "июль — август"
+            }
+        },
+        {
+            "кукуруза",
+            new CropData
+            {
+                Name = "Кукуруза",
+                MinDayTemp = 20,
+                MaxDayTemp = 28,
+                MinNightTemp = 10,
+                DayTempWeight = 1.0,
+                NightTempWeight = 0.9,
+                HumidityWeight = 0.9,
+                WeatherWeight = 1.0,
+                OptimalMonths = "сентябрь — октябрь"
+            }
+        },
+        {
+            "картофель",
+            new CropData
+            {
+                Name = "Картофель",
+                MinDayTemp = 15,
+                MaxDayTemp = 20,
+                MinNightTemp = 5,
+                DayTempWeight = 1.0,
+                NightTempWeight = 0.9,
+                HumidityWeight = 1.0,
+                WeatherWeight = 1.0,
+                OptimalMonths = "август — сентябрь"
+            }
+        },
+        {
+            "клубника",
+            new CropData
+            {
+                Name = "Клубника",
+                MinDayTemp = 18,
+                MaxDayTemp = 24,
+                MinNightTemp = 8,
+                DayTempWeight = 1.0,
+                NightTempWeight = 0.9,
+                HumidityWeight = 0.9,
+                WeatherWeight = 1.0,
+                OptimalMonths = "июнь — июль"
+            }
+        }
+    };
+
+    // 8. Паттерн КОМПОЗИТ (Composite-like) - меню как словарь команд
+    private static Dictionary<string, IMenuCommand> menuCommands = new Dictionary<string, IMenuCommand>
+    {
+        ["1"] = new CalculatePlantingCommand(),
+        ["2"] = new CalculateHarvestCommand(),
+        ["3"] = new ShowFactsCommand(),
+        ["4"] = new ShowCropsCommand(),
+        ["5"] = new ShowNotesCommand(),
+        ["6"] = new ExitCommand()
+    };
+
+    static void Main()
+    {
+        while (true)
+        {
+            ShowMenu();
+
+            Console.Write("Выберите опцию: ");
+            string choice = Console.ReadLine();
+
+            if (menuCommands.ContainsKey(choice))
+            {
+                menuCommands[choice].Execute();
+            }
+            else
+            {
+                Console.WriteLine("Некорректный ввод, попробуйте снова. Нажмите Enter для продолжения");
+                Console.ReadKey();
+            }
+        }
+    }
+
+    private static void ShowMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("Здравствуйте! Вас приветствует Ваш персональный помощник ОГОРОДНИК!");
+        Console.WriteLine("Данная программа предназначена для помощи в определении наилучшего времени");
+        Console.WriteLine("для посадки и сбора урожая различных культур.");
+        Console.WriteLine("Программа использует метод вероятности с экспертными оценками.");
+        Console.WriteLine("Помимо всего ранее перечисленного вы сможете узнать много иной полезной информации!");
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("Основное меню:");
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("1. Расчет вероятности посадки (с экспертной оценкой)");
+        Console.WriteLine("2. Расчет вероятности сбора урожая (с экспертной оценкой)");
+        Console.WriteLine("3. Интересные факты для посадки и сбора");
+        Console.WriteLine("4. Посадочные культуры (справочник)");
+        Console.WriteLine("5. Примечание");
+        Console.WriteLine("6. Завершить");
+        Console.WriteLine("--------------------------------------------------------------------");
+    }
+
+    // Метод для показа интересных фактов
+    public static void ShowInterestingFacts()
+    {
+        Console.Clear();
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("ИНТЕРЕСНЫЕ ФАКТЫ О ПОСАДКЕ И СБОРЕ УРОЖАЯ");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        Console.WriteLine("ФАКТЫ О ПОСАДКЕ:");
+        Console.WriteLine("1. Пшеница (яровая) лучше всего растет при температуре +10...+25°C");
+        Console.WriteLine("2. Кукуруза очень теплолюбива - минимальная температура для роста +12°C");
+        Console.WriteLine("3. Картофель боится заморозков - минимальная ночная температура +5°C");
+        Console.WriteLine("4. Клубника любит влагу - оптимальная влажность почвы 75-85%");
+        Console.WriteLine("5. Большинство культур лучше сажать в пасмурную погоду");
+        Console.WriteLine("\nФАКТЫ О СБОРЕ УРОЖАЯ:");
+        Console.WriteLine("1. Пшеницу лучше убирать в сухую солнечную погоду");
+        Console.WriteLine("2. Картофель нельзя убирать в дождь - это приводит к гниению");
+        Console.WriteLine("3. Клубнику собирают утром, когда она прохладная");
+        Console.WriteLine("4. Кукурузу убирают когда зерна становятся твердыми");
+        Console.WriteLine("5. Идеальная влажность почвы для уборки - менее 60%");
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("\nНажмите любую клавишу для возврата...");
+        Console.ReadKey();
+    }
+
+    // Метод для показа справочника культур
+    public static void ShowPlantingCrops()
+    {
+        Console.Clear();
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("СПРАВОЧНИК КУЛЬТУР ДЛЯ ПОСАДКИ И СБОРА");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        Console.WriteLine("КУЛЬТУРЫ ДЛЯ ПОСАДКИ:");
+        Console.WriteLine("====================\n");
+        foreach (var crop in cropsDatabase)
+        {
+            Console.WriteLine($"Культура: {crop.Value.Name}");
+            Console.WriteLine($"Оптимальные месяцы: {crop.Value.OptimalMonths}");
+            Console.WriteLine($"Температура днем: {crop.Value.MinDayTemp}°C - {crop.Value.MaxDayTemp}°C");
+            Console.WriteLine($"Температура ночью: не ниже {crop.Value.MinNightTemp}°C");
+            Console.WriteLine("--------------------------------------------------------------------");
+        }
+
+        Console.WriteLine("\nКУЛЬТУРЫ ДЛЯ СБОРА УРОЖАЯ:");
+        Console.WriteLine("==========================\n");
+        foreach (var crop in harvestDatabase)
+        {
+            Console.WriteLine($"Культура: {crop.Value.Name}");
+            Console.WriteLine($"Оптимальные месяцы: {crop.Value.OptimalMonths}");
+            Console.WriteLine($"Температура днем: {crop.Value.MinDayTemp}°C - {crop.Value.MaxDayTemp}°C");
+            Console.WriteLine($"Температура ночью: не ниже {crop.Value.MinNightTemp}°C");
+            Console.WriteLine("--------------------------------------------------------------------");
+        }
+
+        Console.WriteLine("\nНажмите любую клавишу для возврата...");
+        Console.ReadKey();
+    }
+
+    // Метод для показа примечаний и тестовых расчетов
+    public static void ShowTestCalculations()
+    {
+        Console.Clear();
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("ПРИМЕЧАНИЕ");
+        Console.WriteLine("--------------------------------------------------------------------");
+        Console.WriteLine("Примеры расчетов вероятности удачной посадки и сбора урожая");
+        Console.WriteLine("методом вероятности по формуле: P(Y=1) = (a + b + c + d) / 4");
+        Console.WriteLine("где a,b,c,d - баллы по температуре днем/ночью, влажности и погоде");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        Console.WriteLine("РАСЧЕТЫ ДЛЯ ПОСАДКИ:");
+        Console.WriteLine("===================\n");
+
+        // Пример 1: Пшеница в январе
+        Console.WriteLine("1. ПШЕНИЦА (ЯРОВАЯ) - 24 января");
+        Console.WriteLine("Температура днем: -5°C -> Балл: 0");
+        Console.WriteLine("Температура ночью: -10°C -> Балл: 0");
+        Console.WriteLine("Влажность: 85% -> Балл: 0");
+        Console.WriteLine("Погода: Солнечно -> Балл: 0.7");
+        Console.WriteLine("Расчет: P = (0 + 0 + 0 + 0.7) / 4 = 0.175 (17.5%)");
+        Console.WriteLine("Вывод: Лучше воздержаться от посадки");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        // Пример 2: Пшеница в мае
+        Console.WriteLine("2. ПШЕНИЦА (ЯРОВАЯ) - 2 мая");
+        Console.WriteLine("Температура днем: 18°C -> Балл: 1");
+        Console.WriteLine("Температура ночью: 6°C -> Балл: 0.8");
+        Console.WriteLine("Влажность: 56% -> Балл: 0.5");
+        Console.WriteLine("Погода: Солнечно -> Балл: 0.7");
+        Console.WriteLine("Расчет: P = (1 + 0.8 + 0.5 + 0.7) / 4 = 0.75 (75%)");
+        Console.WriteLine("Вывод: Успешный процент посадки");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        // Пример 3: Картофель в апреле
+        Console.WriteLine("3. КАРТОФЕЛЬ - 16 апреля");
+        Console.WriteLine("Температура днем: 14°C -> Балл: 0.9");
+        Console.WriteLine("Температура ночью: 4°C -> Балл: 0.5");
+        Console.WriteLine("Влажность: 65% -> Балл: 1");
+        Console.WriteLine("Погода: Облачно -> Балл: 0.9");
+        Console.WriteLine("Расчет: P = (0.9 + 0.5 + 1 + 0.9) / 4 = 0.825 (82.5%)");
+        Console.WriteLine("Вывод: Большой процент успешной посадки");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        Console.WriteLine("РАСЧЕТЫ ДЛЯ СБОРА УРОЖАЯ:");
+        Console.WriteLine("========================\n");
+
+        // Пример 4: Пшеница в июле
+        Console.WriteLine("4. ПШЕНИЦА (ЯРОВАЯ) - 15 июля");
+        Console.WriteLine("Температура днем: 24°C -> Балл: 1");
+        Console.WriteLine("Температура ночью: 12°C -> Балл: 0.9");
+        Console.WriteLine("Влажность: 55% -> Балл: 1");
+        Console.WriteLine("Погода: Солнечно -> Балл: 1");
+        Console.WriteLine("Расчет: P = (1 + 0.9 + 1 + 1) / 4 = 0.975 (97.5%)");
+        Console.WriteLine("Вывод: Условия идеальны для уборки пшеницы");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        // Пример 5: Картофель в сентябре
+        Console.WriteLine("5. КАРТОФЕЛЬ - 10 сентября");
+        Console.WriteLine("Температура днем: 16°C -> Балл: 1");
+        Console.WriteLine("Температура ночью: 6°C -> Балл: 0.9");
+        Console.WriteLine("Влажность: 75% -> Балл: 0.8");
+        Console.WriteLine("Погода: Дождь -> Балл: 0");
+        Console.WriteLine("Расчет: P = (1 + 0.9 + 0.8 + 0) / 4 = 0.675 (67.5%)");
+        Console.WriteLine("Вывод: Уборка возможна, но из-за дождя есть риски - лучше подождать");
+        Console.WriteLine("--------------------------------------------------------------------\n");
+
+        Console.WriteLine("ОЦЕНОЧНАЯ ШКАЛА ДЛЯ ПОСАДКИ:");
+        Console.WriteLine("0-40%: Лучше воздержаться от посадки");
+        Console.WriteLine("41-69%: Стоит подождать");
+        Console.WriteLine("70-100%: Успешная посадка");
+        Console.WriteLine("\nОЦЕНОЧНАЯ ШКАЛА ДЛЯ СБОРА УРОЖАЯ:");
+        Console.WriteLine("0-40%: Уборка не рекомендуется");
+        Console.WriteLine("41-69%: Стоит подождать или убирать с осторожностью");
+        Console.WriteLine("70-100%: Условия благоприятны для уборки");
+        Console.WriteLine("--------------------------------------------------------------------");
+
+        Console.WriteLine("\nНажмите любую клавишу для возврата...");
+        Console.ReadKey();
+    }
+}
